@@ -9,14 +9,22 @@ interface PickADay {
 
 const PickADay = ({forecaseDays, pickADay}: PickADay) => {
   return (
-    <View style={{height: 100, width: '100%'}}>
+    <View
+      style={{
+        height: 100,
+        width: '100%',
+        justifyContent: 'center',
+      }}>
       <FlatList
         style={{flex: 1}}
         data={forecaseDays}
+        contentContainerStyle={{
+          alignItems: 'center',
+        }}
         renderItem={({item, index}) => {
           return (
             <Button
-              style={{height: 100, backgroundColor: 'black'}}
+              containerStyle={{margin: 10}}
               title={item.date}
               key={index}
               onPress={() => pickADay(index)}></Button>

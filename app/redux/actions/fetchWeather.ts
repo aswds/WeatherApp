@@ -14,7 +14,7 @@ export const fetchWeather = createAsyncThunk(
     // Destructure the parameters from the payload object
     const {lat, lon} = location;
     const apiKey = Config.WEATHER_API;
-    const daysToFetch = weatherRange.charAt(0);
+    const daysToFetch = weatherRange.replace(/\D/g, '');
     try {
       const res = await fetch(
         `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat},${lon}&days=${daysToFetch}&aqi=no&alerts=no`,

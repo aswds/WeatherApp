@@ -33,7 +33,7 @@ const MainScreen = () => {
 
   if (isLoading) {
     return (
-      <View style={styles.container}>
+      <View style={{justifyContent: 'center', flex: 1}}>
         <ActivityIndicator size="large" color="#0000ff" />
       </View>
     );
@@ -42,7 +42,6 @@ const MainScreen = () => {
   if (error) {
     return <Text>Error: {error}</Text>;
   }
-  console.log(weatherData.forecast.forecastday.length);
   return (
     <View style={styles.container}>
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -53,20 +52,20 @@ const MainScreen = () => {
         <Text style={[styles.textStyle, styles.boldText, {fontSize: 30}]}>
           {weatherData.current?.temp_c}°C
         </Text>
-        <Text></Text>
+
+        <Text style={[styles.textStyle, styles.boldText]}>Current Temp</Text>
       </View>
       <View style={{width: '100%'}}>
         <HourlyWeather
           hourlyData={weatherData.forecast?.forecastday[forecastDay]}
         />
-        <PickADay
-          forecaseDays={weatherData.forecast?.forecastday}
-          pickADay={function (day: string): void {
-            setForecastDay(day);
-          }}
-        />
       </View>
-
+      <PickADay
+        forecaseDays={weatherData.forecast?.forecastday}
+        pickADay={function (day: string): void {
+          setForecastDay(day);
+        }}
+      />
       <View style={{}}>
         <WeatherRangeButtons
           fetchData={range => {
